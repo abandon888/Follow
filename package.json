@@ -1,7 +1,7 @@
 {
   "name": "Follow",
   "type": "module",
-  "version": "0.2.2-beta.0",
+  "version": "0.2.3-beta.0",
   "private": true,
   "packageManager": "pnpm@9.12.3",
   "description": "Follow your favorites in one inbox",
@@ -101,7 +101,6 @@
     "tailwindcss": "3.4.14",
     "tailwindcss-animate": "1.0.7",
     "tailwindcss-motion": "0.3.0-beta",
-    "tsup": "8.3.5",
     "tsx": "4.19.2",
     "turbo": "2.2.3",
     "typescript": "5.6.3",
@@ -110,7 +109,7 @@
     "vite-bundle-analyzer": "0.13.1",
     "vite-plugin-mkcert": "1.17.6",
     "vite-tsconfig-paths": "5.0.1",
-    "vitest": "2.0.5"
+    "vitest": "2.1.5"
   },
   "pnpm": {
     "patchedDependencies": {
