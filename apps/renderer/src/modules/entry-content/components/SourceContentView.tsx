@@ -19,7 +19,7 @@ const variants = {
 const Banner = () => {
   const { t } = useTranslation()
   return (
-    <div className="z-50 w-full bg-yellow-600 p-3 text-white">
+    <div className="z-50 w-full bg-yellow-600 p-3 text-white" id="viewBanner">
       <div className="text-center">
         <p>{t("notify.unSupportDisplay")}</p>
       </div>
@@ -31,6 +31,7 @@ export const SourceContentView = ({ src }: { src: string }) => {
   const showSourceContent = useShowSourceContent()
   const [loading, setLoading] = useState(true)
   const webviewRef = useRef<HTMLIFrameElement | null>(null)
+  const bannerHeight = useRef(0)
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -48,10 +49,24 @@ export const SourceContentView = ({ src }: { src: string }) => {
     }
   }, [src, showSourceContent])
 
+  useEffect(() => {
+    if (!IN_ELECTRON) {
+      const banner = document.querySelector("#viewBanner")
+      if (banner) {
+        bannerHeight.current = banner.getBoundingClientRect().height // 动态设置 Banner 高度
+      }
+    }
+  }, [])
+
   return (
     <>
       {!IN_ELECTRON && <Banner />}
-      <div className="relative flex size-full flex-col">
+      <div
+        className={`relative flex size-full flex-col`}
+        style={{
+          height: !IN_ELECTRON ? `calc(100% - ${bannerHeight.current}px)` : "100%",
+        }}
+      >
         {loading && (
           <div className="center mt-16 min-w-0">
             <EntryContentLoading icon={src} />
